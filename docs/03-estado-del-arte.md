@@ -144,11 +144,55 @@ Segundo, se lee primero lo esencial (§§ 1-3, 5-6, 8 y 11) y se deja para despu
 
 [^fecha]: Se cita como 1936 porque es el año en que el trabajo se leyó ante la London Mathematical Society (12 de noviembre de 1936, según la primera página del artículo; Turing, 1936, p. 230) y en que empezó a publicarse, pues salió por partes a fines de ese año. El registro del DOI, en cambio, lo fecha en 1937 porque toma la fecha del volumen 42 de la serie 2, que reúne esas partes y abarca 1936-1937. Por eso algunas fuentes lo citan como 1937 y otras como "1936-37".
 
+## Artículo 4. Ferreira et al. (2021): aprender el autómata de un protocolo de red
+
+**1. Cita (APA 7).** Ferreira, T., Brewton, H., D'Antoni, L. y Silva, A. (2021). Prognosis: Closed-box analysis of network protocol implementations. En *Proceedings of the 2021 ACM SIGCOMM 2021 Conference* (pp. 762-774). Association for Computing Machinery. https://doi.org/10.1145/3452296.3472938
+
+**2. Problema que aborda.** Los errores en las implementaciones de protocolos de red (TCP, QUIC) causan fallas y brechas de seguridad, y verificarlas exige mucha experiencia. Buscan una forma general y reutilizable de detectarlos sin saber de antemano qué propiedad violan (Ferreira et al., 2021, sec. 1).
+
+**3. Método o propuesta.** Prognosis es un marco modular con tres partes. (1) Un adaptador traduce entre paquetes reales y símbolos abstractos, aprovechando una implementación de referencia en lugar de programar la lógica del protocolo. (2) Un módulo de aprendizaje activo, con consultas de pertenencia y de equivalencia (algoritmo TTT), aprende máquinas de Mealy del protocolo y, con un solucionador SMT, las amplía con registros para capturar números de secuencia. (3) Un módulo de análisis revisa el determinismo, compara los modelos de dos implementaciones y verifica propiedades (secs. 2-5).
+
+**4. Resultado principal.** Reproduce un estudio previo de TCP con unas 300 líneas de instrumentación, frente a más de 3,000 del trabajo anterior. En varias implementaciones de QUIC encuentra una ambigüedad del estándar, que el IETF corrigió, y errores que los desarrolladores confirmaron; uno permitiría un ataque de negación de servicio (secs. 6 y 8). El método busca errores: no ofrece garantías formales (sec. 1).
+
+**5. Tema de la Unidad Temática I.** Unidad I, *Lenguajes regulares*: tema **1.2.3 Autómatas finitos deterministas** (una máquina de Mealy es un AFD con salidas) y tema **1.4 Aplicaciones de los lenguajes regulares** (IPN, 2021).
+
+**6. Aportación al trabajo del curso.** Muestra a los autómatas como herramienta para analizar software real: cada estado resume lo que ya ocurrió en una conexión. Continúa el Artículo 1 (TCP y máquinas de Mealy) y aporta un ejemplo de aplicación fuera de la teoría.
+
+## Artículo 5. Churchill, Biderman y Herrick (2020): *Magic: The Gathering* es Turing completo
+
+**1. Cita (APA 7).** Churchill, A., Biderman, S. y Herrick, A. (2020). Magic: The Gathering is Turing complete. En M. Farach-Colton, G. Prencipe y R. Uehara (Eds.), *10th International Conference on Fun with Algorithms (FUN 2021)* (LIPIcs, Vol. 157, Art. 9, pp. 9:1-9:19). Schloss Dagstuhl – Leibniz-Zentrum für Informatik. https://doi.org/10.4230/LIPIcs.FUN.2021.9
+
+**2. Problema que aborda.** Averiguar si existe un juego real, con sus reglas normales, cuyo mejor movimiento sea indecidible, pregunta abierta durante una década. Muestran que en *Magic* ni siquiera se puede decidir quién gana cuando todas las jugadas son obligadas (Churchill et al., 2020, sec. 1).
+
+**3. Método o propuesta.** Incrustan una máquina de Turing universal (la de Rogozhin, con 2 estados y 18 símbolos) en una partida de *Magic*. La cinta son criaturas cuyo poder y resistencia indican su distancia a la cabeza y cuyo tipo de criatura codifica el símbolo. Las reglas de la máquina se codifican con habilidades que se activan solas, y todas las jugadas de los dos jugadores son obligatorias. Si la máquina se detiene, gana el primer jugador; si no, la partida cae en un ciclo infinito y se declara empate (secs. 3 y 4).
+
+**4. Resultado principal.** El Teorema 1: determinar el resultado de una partida de *Magic* en la que todas las jugadas restantes son obligadas es indecidible. Por tanto, jugar de forma óptima es al menos tan difícil como el problema del paro. La construcción cabe en un mazo de 60 cartas legal en el formato Legacy (secs. 1 y 5).
+
+**5. Tema de la Unidad Temática I.** Unidad I: tema **1.1 Orígenes de la computación**, en especial **1.1.4 Computabilidad y complejidad** (IPN, 2021). El modelo y el problema del paro se estudian a fondo en la Unidad III (3.1 Máquina de Turing y 3.2 Decidibilidad).
+
+**6. Aportación al trabajo del curso.** Muestra la máquina de Turing y el problema del paro en acción, fuera de las matemáticas. Refuerza el Artículo 3 y la tesis de Church-Turing: si un sistema puede simular una máquina de Turing, es tan potente como ella.
+
+## Cierre: comparación de los cinco textos
+
+| Texto | Arbitrado | Año | Modelo que usa | Campo de aplicación |
+|---|---|---|---|---|
+| 1. Gribkoff | No (documento de curso) | 2013 | AFD y máquina de Mealy | Máquinas expendedoras, videojuegos, protocolos de red y buscadores |
+| 2. Luna-Benoso et al. | Sí (*Computers*) | 2022 | Autómata celular | Medicina: detección de melanoma en imágenes |
+| 3. Turing (original elegido) | Sí (*Proceedings of the London Mathematical Society*) | 1936 | Máquina de Turing | Lógica matemática: el Entscheidungsproblem |
+| 4. Ferreira et al. (localizado) | Sí (ACM SIGCOMM) | 2021 | Máquinas de Mealy aprendidas | Redes: análisis de protocolos |
+| 5. Churchill et al. (localizado) | Sí (FUN, LIPIcs) | 2020 | Máquina de Turing universal | Juegos: complejidad de *Magic* |
+
+**Qué tienen en común.** Los cinco usan una máquina abstracta, definida por estados y reglas de transición, para razonar sobre un sistema: un AFD o una máquina de Mealy (Artículos 1 y 4), un autómata celular (2) o una máquina de Turing (3 y 5). **En rigor difieren mucho.** Turing y Churchill et al. demuestran teoremas; Luna-Benoso et al. y Ferreira et al. evalúan con experimentos y no ofrecen garantías formales, algo que Ferreira et al. dicen expresamente; Gribkoff no es arbitrado ni cita fuentes. **En propósito también:** enseñar aplicaciones (1), clasificar imágenes (2), fundar la computación y demostrar un límite (3), encontrar errores en protocolos (4) y mostrar que un juego real es indecidible (5). **Problema abierto.** Cómo dar más poder expresivo a un modelo sin perder la verificación automática: los modelos con registros de Prognosis necesitan números, pero verificar sus propiedades es, en general, indecidible, y Turing y Churchill et al. muestran por qué existen esos límites (Ferreira et al., 2021, sec. 5).
+
 ## Referencias
+
+Churchill, A., Biderman, S. y Herrick, A. (2020). Magic: The Gathering is Turing complete. En M. Farach-Colton, G. Prencipe y R. Uehara (Eds.), *10th International Conference on Fun with Algorithms (FUN 2021)* (LIPIcs, Vol. 157, Art. 9, pp. 9:1-9:19). Schloss Dagstuhl – Leibniz-Zentrum für Informatik. https://doi.org/10.4230/LIPIcs.FUN.2021.9
 
 Copeland, B. J. (2023). The Church-Turing thesis. En E. N. Zalta y U. Nodelman (Eds.), *The Stanford encyclopedia of philosophy*. Metaphysics Research Lab, Stanford University. Recuperado el 21 de septiembre de 2026, de https://plato.stanford.edu/entries/church-turing/
 
 Daciuk, J., Mihov, S., Watson, B. W. y Watson, R. E. (2000). Incremental construction of minimal acyclic finite-state automata. *Computational Linguistics, 26*(1), 3-16. https://doi.org/10.1162/089120100561601
+
+Ferreira, T., Brewton, H., D'Antoni, L. y Silva, A. (2021). Prognosis: Closed-box analysis of network protocol implementations. En *Proceedings of the 2021 ACM SIGCOMM 2021 Conference* (pp. 762-774). Association for Computing Machinery. https://doi.org/10.1145/3452296.3472938
 
 Gribkoff, E. (2013). *Applications of deterministic finite automata* [Documento de curso, ECS 120]. University of California, Davis. https://www.cs.ucdavis.edu/~rogaway/classes/120/spring13/eric-dfa.pdf
 
