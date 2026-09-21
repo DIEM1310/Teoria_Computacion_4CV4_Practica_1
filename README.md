@@ -7,7 +7,7 @@ Instituto Politécnico Nacional · Escuela Superior de Cómputo
 | Alumno | Diego Polo Santoscoy |
 | Boleta | 2025630828 |
 | Grupo | 4CV4 |
-| Carrera | Ingeniería en Sistemas Computacionales (plan de estudios 2020) |
+| Carrera | Ingeniería en Sistemas Computacionales |
 | Unidad de aprendizaje | Teoría de la Computación |
 | Profesor | Gabriel Hurtado Avilés |
 | Fecha de entrega | 22 de septiembre de 2026 |
