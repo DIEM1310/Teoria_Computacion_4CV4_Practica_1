@@ -27,3 +27,17 @@ Aplicar los conceptos de la Unidad Temática I al diseño de autómatas finitos 
 | 5. Aplicación con interfaz gráfica | [docs/05-aplicacion.md](docs/05-aplicacion.md) |
 | Conclusiones | [docs/conclusiones.md](docs/conclusiones.md) |
 | Bibliografía | [docs/bibliografia.md](docs/bibliografia.md) |
+
+## Cómo levantar el entorno y ejecutar las pruebas
+
+Hace falta tener **Docker Desktop** instalado y encendido (se usó Docker Desktop, no Podman, con Docker 29.8.1 y Docker Compose v5.5.1). La interfaz de la aplicación usa **Flet 0.86.5**, versión fijada en [requirements.txt](requirements.txt). El detalle del entorno está en [docs/01-entorno.md](docs/01-entorno.md).
+
+Los comandos se ejecutan desde la carpeta `entorno/`:
+
+| Para... | Comando |
+|---|---|
+| Construir las tres imágenes (Python 3.11, 3.12 y 3.13) | `docker compose build` |
+| Ver la versión de Python de cada contenedor | `docker compose run --rm py311 python --version`, y lo mismo con `py312` y `py313` |
+| Ejecutar las pruebas en cada contenedor | `docker compose run --rm py311 pytest -q`, y lo mismo con `py312` y `py313` |
+| Abrir la interfaz | `docker compose up py312` y abrir http://localhost:8550 en el navegador |
+| Apagar y limpiar | `docker compose down` |
